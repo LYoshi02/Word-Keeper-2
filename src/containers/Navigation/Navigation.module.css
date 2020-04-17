@@ -1,0 +1,98 @@
+.Navigation {
+  width: 75%;
+  height: 100vh;
+  background-color: var(--color-principal);
+  background-image: linear-gradient(to bottom, #0046b8 0%, #005bea 100%);
+  position: fixed;
+  z-index: 10;
+  left: -80%;
+  top: 0;
+  transition: 0.5s all;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Para que no se escondan los elementos de la navegación en celulares muy altos */
+@media only screen and (min-width: 500px) {
+  .Navigation {
+    width: 50%;
+    left: -60%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .Navigation {
+    width: 25%;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .Navigation {
+    width: 15%;
+  }
+}
+
+@media (max-height: 570px) and (min-width: 768px) {
+  .Navigation {
+    justify-content: normal;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.Opened {
+  left: 0;
+}
+
+.MobileTop {
+  height: 5rem;
+  width: 100%;
+  border-bottom: 2px solid #fff;
+}
+.MobileTop > * {
+  display: block;
+}
+.MobileTop::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+@media only screen and (min-width: 768px) {
+  .MobileTop,
+  .MobileTop > * {
+    display: none;
+    border: none;
+  }
+}
+
+.MobileTop span {
+  background-color: #fff;
+  width: 3rem;
+  height: 0.5rem;
+  display: inline-block;
+  position: absolute;
+  top: 45%;
+  right: 0;
+}
+.MobileTop span:hover {
+  cursor: pointer;
+}
+.MobileTop span:first-child {
+  transform: rotate(45deg);
+}
+.MobileTop span:last-child {
+  transform: rotate(-45deg);
+}
+
+.MobileClose {
+  height: 100%;
+  width: 4rem;
+  margin-right: 1.5rem;
+  float: right;
+  position: relative;
+}

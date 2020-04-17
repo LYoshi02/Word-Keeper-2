@@ -1,0 +1,23 @@
+.Add {
+    background-color: var(--color-secundario-1);
+    color: #fff;
+    transition: 0.5s all;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 4px 10px;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.6rem;
+    display: none;
+}
+.Add:hover {
+    background-color: var(--color-secundario-1-oscuro);
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+    .Add {
+        display: inline-block;
+    }
+}

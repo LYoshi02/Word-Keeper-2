@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 
+import Backdrop from "../../components/UI/Backdrop/Backrop";
 import NavigationItem from "../../components/NavigationItem/NavigationItem";
 
 import classes from "./Navigation.module.css";
@@ -13,7 +14,8 @@ class Navigation extends Component {
             { content: 'Verbos', route: '/palabras/verbos', icon: 'running' },
             { content: 'Adjetivos', route: '/palabras/adjetivos', icon: 'grin-wink' },
             { content: 'Otros', route: '/palabras/otros', icon: 'boxes' }
-        ]
+        ],
+        showBackdrop: false
     }
 
     render() {
@@ -37,14 +39,15 @@ class Navigation extends Component {
                         icon={item.icon}
                         route={item.route}
                         content={item.content} />
-                ))};
+                ))}
             </nav>
         );
 
         return (
             <React.Fragment>
                 {navigation}
-                < div className="background" ></div >
+                <Backdrop show={this.props.navigationOpened} 
+                    closeNavigation={this.props.clicked} />
             </React.Fragment >
         );
     }

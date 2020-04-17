@@ -22,6 +22,7 @@ class Layout extends Component {
                 <Header clicked={this.navigationStatusHandler} />
                 <Navigation clicked={this.navigationStatusHandler} 
                     navigationOpened={this.state.openNavigation} />
+                    
                 <main>
                     {this.props.children}
                 </main>

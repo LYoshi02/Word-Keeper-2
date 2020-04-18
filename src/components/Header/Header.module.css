@@ -32,21 +32,6 @@
   }
 }
 
-.Mobile {
-  cursor: pointer;
-  margin-right: 4rem;
-}
-.Mobile::after {
-  display: block;
-  content: "";
-  clear: both;
-}
-@media only screen and (min-width: 768px) {
-  .Mobile {
-    display: none;
-  }
-}
-
 
 .Header span {
   width: 15vw;

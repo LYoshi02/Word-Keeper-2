@@ -1,0 +1,55 @@
+.Details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+@media only screen and (max-width: 360px) {
+  .Details {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}
+
+.Type {
+  color: #000;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border: 2px solid#118AB2;
+  border-radius: 1rem;
+  padding: 0.8rem 2rem;
+  display: inline-block;
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+@media only screen and (max-width: 360px) {
+  .Type {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-bottom: 2rem;
+  }
+}
+/* .sustantivo {
+  border: 2px solid#118AB2;
+}
+
+.verbo {
+  border: 2px solid#EF476F;
+}
+
+.adjetivo {
+  border: 2px solid#06D6A0;
+}
+
+.otro {
+  border: 2px solid#FFD166;
+} */
+
+.Actions {
+    font-size: 2rem;
+}
+.Actions > * {
+    padding: 0.8rem;
+    margin-bottom: 0;
+}

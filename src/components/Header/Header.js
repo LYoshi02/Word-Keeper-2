@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../UI/Button/Button";
 import Icon from "../UI/Icon/Icon";
+import NavToggle from "./NavToggle/NavToggle";
 
 import classes from "./Header.module.css";
 
@@ -12,11 +13,7 @@ const header = (props) => {
     return (
         <header className={classes.Header}>
             <div className={classes.Container}>
-                <div className={classes.Mobile} onClick={props.clicked}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <NavToggle openNavigation={props.clicked} />
 
                 <div className={classes.Search}>
                     <Icon type="search" class="Search" />

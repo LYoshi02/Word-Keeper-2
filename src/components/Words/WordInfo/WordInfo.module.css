@@ -1,0 +1,10 @@
+.List {
+    list-style: none;
+}
+
+.Item {
+    line-height: 2.8rem;
+}
+.Item:not(:last-child) {
+    margin-bottom: 0.5rem;
+}

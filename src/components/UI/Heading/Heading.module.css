@@ -1,0 +1,18 @@
+.HeadingPrimary {
+  font-size: 6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.HeadingSecondary {
+  font-size: 4rem;
+}
+
+.HeadingTertiary {
+  color: var(--color-gris-oscuro);
+  text-transform: uppercase;
+  margin: 1.5rem 0;
+  font-weight: 700;
+  font-size: 2.3rem;
+}

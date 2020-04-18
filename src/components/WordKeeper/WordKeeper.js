@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Layout from "../../hoc/Layout/Layout";
-import Palabras from "../Words/Words";
+import Words from "../../containers/Words/Words";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -13,7 +13,7 @@ faTrash, faPen, faPlus);
 
 const wordKeeper = () => (
     <Layout>
-        <Palabras />
+        <Words />
     </Layout>
 )
 

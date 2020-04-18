@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
 
 import Backdrop from "../../components/UI/Backdrop/Backrop";
 import NavigationItem from "../../components/NavigationItem/NavigationItem";
@@ -14,8 +13,7 @@ class Navigation extends Component {
             { content: 'Verbos', route: '/palabras/verbos', icon: 'running' },
             { content: 'Adjetivos', route: '/palabras/adjetivos', icon: 'grin-wink' },
             { content: 'Otros', route: '/palabras/otros', icon: 'boxes' }
-        ],
-        showBackdrop: false
+        ]
     }
 
     render() {

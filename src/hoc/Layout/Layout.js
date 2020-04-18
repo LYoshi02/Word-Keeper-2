@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Header from "../../components/Header/Header";
 import Navigation from "../../containers/Navigation/Navigation";
 
+import classes from "./Layout.module.css";
+
 class Layout extends Component {
     state = {
         openNavigation: false
@@ -23,7 +25,7 @@ class Layout extends Component {
                 <Navigation clicked={this.navigationStatusHandler} 
                     navigationOpened={this.state.openNavigation} />
                     
-                <main>
+                <main className={classes.Main}>
                     {this.props.children}
                 </main>
             </React.Fragment>

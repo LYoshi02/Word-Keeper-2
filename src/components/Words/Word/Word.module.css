@@ -1,0 +1,25 @@
+.Word {
+    border-radius: 1rem;
+    border: 2px solid #b1b1b1;
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 0.2rem 1rem;
+    transition: 0.3s all;
+    margin: 0 0 2rem 0;
+    width: 100%;
+}
+.Word:hover {
+    transform: scale(1.01);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0.5rem 1.5rem;
+}
+
+@media only screen and (min-width: 1000px) {
+    .Word {
+        width: 47%;
+    }
+
+    .Word:nth-child(odd) {
+        margin: 0 2rem 2rem 0;
+    }
+}
+

@@ -1,0 +1,14 @@
+.Item {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Item:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.Item span {
+    font-size: 2rem;
+    width: 100%;
+}

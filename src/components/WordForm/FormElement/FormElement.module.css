@@ -1,0 +1,24 @@
+.Nombre input::placeholder {
+    color: #000;
+}
+.Nombre input:focus {
+    outline: none;
+}
+
+.Seccion,
+.Tipo {
+    margin-bottom: 2rem;
+    padding-left: 0;
+    /* @include clearfix; */
+}
+@media only screen and (min-width: 768px) {
+    .Seccion,
+    .Tipo {
+        padding-left: 2rem;
+    }
+}
+.Seccion::after {
+    display: block;
+    content: "";
+    clear: both;
+}

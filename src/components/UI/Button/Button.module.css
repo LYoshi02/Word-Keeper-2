@@ -8,15 +8,67 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 1.6rem;
-    display: none;
 }
 .Add:hover {
     background-color: var(--color-secundario-1-oscuro);
     cursor: pointer;
 }
 
+.Header {
+    display: none;
+}
 @media only screen and (min-width: 768px) {
-    .Add {
+    .Header {
         display: inline-block;
     }
+}
+
+.Close {
+    color: #fff;
+    font-size: 3rem;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    border-radius: 50%;
+    line-height: 0.6;
+    padding: 1rem;
+    background-color: var(--color-gris-oscuro);
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.Word {
+}
+@media only screen and (min-width: 450px) {
+    .Word {
+        align-self: flex-end;
+    }
+}
+
+.Item {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-gris-oscuro);
+    color: var(--color-gris-claro);
+    font-weight: normal;
+    text-transform: capitalize;
+    float: right;
+}
+@media only screen and (min-width: 768px) {
+    .Item {
+        margin-right: 2rem;
+    }
+}
+.Item:hover {
+    background-color: var(--color-gris-oscuro-2);
+}
+
+.DeleteItem {
+    color: var(--color-gris-oscuro-2);
+    font-size: 2.5rem;
+    line-height: 0.8;
+    transition: 0.3s color;   
+}
+.DeleteItem:hover {
+    color: #000;
+    cursor: pointer;
 }

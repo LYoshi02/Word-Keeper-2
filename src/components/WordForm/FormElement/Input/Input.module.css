@@ -1,0 +1,28 @@
+.Title {
+  font-size: 3rem;
+  width: 100%;
+  border: none;
+  padding: 1rem 0;
+  font-family: "Quicksand", sans-serif;
+}
+@media only screen and (min-width: 768px) {
+  .Title {
+    font-size: 4rem;
+  }
+}
+
+.Select {
+    padding: 1rem 2rem;
+    text-transform: capitalize;
+}
+
+.Input {
+    border: none;
+    font-size: 2rem;
+    width: 80%;
+}
+@media only screen and (min-width: 768px) {
+    .Input {
+        width: 90%;
+    }
+}

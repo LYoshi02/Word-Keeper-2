@@ -4,7 +4,7 @@ import classes from "./Backdrop.module.css";
 
 const backdrop = (props) => (
     <div className={classes.Backdrop}
-        onClick={props.closeNavigation}
+        onClick={props.clicked}
         style={(props.show) ? {
             opacity: '1',
             visibility: 'visible'

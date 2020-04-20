@@ -45,7 +45,7 @@ class Navigation extends Component {
             <React.Fragment>
                 {navigation}
                 <Backdrop show={this.props.navigationOpened} 
-                    closeNavigation={this.props.clicked} />
+                    clicked={this.props.closeNavigation} />
             </React.Fragment >
         );
     }

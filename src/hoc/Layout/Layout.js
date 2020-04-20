@@ -22,7 +22,7 @@ class Layout extends Component {
         return(
             <React.Fragment>
                 <Header clicked={this.navigationStatusHandler} />
-                <Navigation clicked={this.navigationStatusHandler} 
+                <Navigation closeNavigation={this.navigationStatusHandler} 
                     navigationOpened={this.state.openNavigation} />
                     
                 <main className={classes.Main}>

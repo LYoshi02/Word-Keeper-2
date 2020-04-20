@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import Button from "../UI/Button/Button";
 import Icon from "../UI/Icon/Icon";
@@ -22,10 +22,11 @@ const header = (props) => {
                     <button className={classes.Delete} type="button">&times;</button>
                 </div>
 
-                <Button type="Add">Agregar Palabra</Button>
+                <Button clicked={() => props.history.push(props.match.url + "/agregar")} 
+                    btnType="Add Header">Agregar Palabra</Button>
             </div>
         </header>
     )
 }
 
-export default header;
+export default withRouter(header);

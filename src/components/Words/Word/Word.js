@@ -10,12 +10,7 @@ const word = (props) => {
     return (
         <div className={classes.Word}>
             <Heading type="h2">{props.name}</Heading>
-            <span style={{
-                    backgroundColor: "#b1b1b1",
-                    padding: "1px 0",
-                    display: "block",
-                    marginTop: "1rem"
-            }}></span>
+            <span className="separator"></span>
 
             <WordInfo
                 name="significado"

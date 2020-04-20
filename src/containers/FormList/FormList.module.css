@@ -1,0 +1,8 @@
+.List {
+    padding-left: 1rem;
+}
+@media only screen and (min-width: 768px) {
+    .List {
+        padding: 0 2rem;
+    }
+}

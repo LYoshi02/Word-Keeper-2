@@ -7,23 +7,26 @@ import WordActions from "../WordActions/WordActions";
 import classes from "./Word.module.css";
 
 const word = (props) => {
+    console.log(props.meaning);
     return (
         <div className={classes.Word}>
-            <Heading type="h2">{props.name}</Heading>
+            <Heading type="h2">{props.nombre}</Heading>
             <span className="separator"></span>
 
-            <WordInfo
-                name="significado"
-                // informacion={significados}
-            />
+            {(props.significado) ?
+                <WordInfo
+                    name="significado"
+                    items={props.significado}
+                /> : null}
 
-            <WordInfo
-                name="ejemplo"
-                // informacion={ejemplos}
-            />
+            {(props.ejemplo) ?
+                <WordInfo
+                    name="ejemplo"
+                    items={(props.ejemplo) ? props.ejemplo : null}
+                /> : null}
 
-            <WordActions 
-                tipo="sustantivo"
+            <WordActions
+                tipo={props.tipo}
             />
         </div>
     );

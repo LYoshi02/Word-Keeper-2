@@ -13,14 +13,11 @@ const wordInfo = (props) => {
             <Heading type="h3">{props.name}</Heading>
 
             <ul className={classes.List}>
-                {/* {informacion.map((dato, indice) => (
-                    <li className="palabra__item" key={dato.id}>
-                        <p><span className="u-text-bold">{indice += 1}. </span> {dato.content}</p>
+                {props.items.map((item, indice) => (
+                    <li className="palabra__item" key={item.id}>
+                        <p><span className="u-text-bold">{indice += 1}. </span> {item.content}</p>
                     </li>
-                ))} */}
-                <li className={classes.List}>
-                        <p><span style={{fontWeight: 'bold'}} >1.</span> Hola</p>
-                </li>
+                ))}
             </ul>
         </div>
     );

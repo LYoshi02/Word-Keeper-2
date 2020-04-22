@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Masonry from 'react-masonry-component';
 import { withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import axios from "../../axios-words";
 import Loading from "../../components/UI/Loading/Loading";
@@ -16,38 +17,45 @@ class Words extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.words !== prevProps.words || 
-           this.props.location.search !== prevProps.location.search ||
-           this.props.searchedWord.trim() !== prevProps.searchedWord.trim()) {
+        if (this.props.words !== prevProps.words ||
+            this.props.location.search !== prevProps.location.search ||
+            this.props.searchedWord.trim() !== prevProps.searchedWord.trim()) {
             let words = [...this.props.words];
             let filteredWords = this.filterWords(words);
-            // console.log(filteredWords);
             this.setState({ words: filteredWords });
         }
     }
 
-    // TODO: REFACTOR THIS BITCH
     filterWords = (words) => {
-        let queryParamsFiltered = words;
+        const queryParamsFiltered = this.filterQueryParams(words);
+        const searchedWordFiltered = this.filterSearchedWords(queryParamsFiltered);
 
-        if(this.props.location.search) {
+        return searchedWordFiltered;
+    }
+
+    filterQueryParams = (words) => {
+        let queryParamsFiltered = words;
+        if (this.props.location.search) {
             const query = new URLSearchParams(this.props.location.search);
-            for(let param of query.entries()) {
-                queryParamsFiltered = words.filter(word => word.tipo === param[1])
+            for (let param of query.entries()) {
+                queryParamsFiltered = words.filter(word => word.tipo === param[1]);
             }
         }
 
-        let searchedWordFiltered = queryParamsFiltered;
-        if(this.props.searchedWord.trim() !== "") {
+        return queryParamsFiltered;
+    }
+
+    filterSearchedWords = (words) => {
+        let searchedWordFiltered = words;
+        if (this.props.searchedWord.trim() !== "") {
             const search = this.props.searchedWord.trim().toLowerCase();
             searchedWordFiltered = [];
 
-            queryParamsFiltered.map(word => {
+            words.map(word => {
                 const name = word.nombre.toLowerCase();
                 if (name.indexOf(search) !== -1) searchedWordFiltered.push(word);
             })
         }
-
         return searchedWordFiltered;
     }
 
@@ -56,13 +64,28 @@ class Words extends Component {
     }
 
     deleteWordHandler = (wordId) => {
-        axios.delete(`/palabras/${wordId}.json`)
-            .then(res => {
-                this.props.updateWords();
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: 'No podrás recuperar esta palabra',
+            icon: 'warning',
+            showCancelButton: true,
+            
+        }).then(result => {
+            if (result.value) {
+                axios.delete(`/palabras/${wordId}.json`)
+                    .then(res => {
+                        this.props.updateWords();
+                        Swal.fire({
+                            title: "Palabra Borrada",
+                            icon: "success"
+                        })
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+        })
+
     }
 
     render() {
@@ -83,7 +106,7 @@ class Words extends Component {
                 </Masonry>
             )
         } else {
-            if(this.props.requestFinished) {
+            if (this.props.requestFinished) {
                 words = <NotFound></NotFound>;
             }
         }

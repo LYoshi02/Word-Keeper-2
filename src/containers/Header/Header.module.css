@@ -14,7 +14,6 @@
   }
 }
 
-
 .Container {
   width: 100%;
   display: flex;
@@ -31,7 +30,6 @@
     display: none;
   }
 }
-
 
 .Header span {
   width: 15vw;
@@ -63,12 +61,16 @@
 }
 .Search:hover {
   border: 2px solid #c4c4c4;
-  box-shadow: rgba(0, 0, 0, 0.15) 0 0.1rem 0.8rem;
 }
 @media only screen and (min-width: 768px) {
   .Search {
     width: 40vw;
   }
+}
+
+.Focus {
+  border: 2px solid #c4c4c4;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0.1rem 0.8rem;
 }
 
 .Input {
@@ -79,18 +81,18 @@
 }
 @media only screen and (min-width: 768px) {
   .Input {
-        width: 90%;
-        font-size: 1.7rem;
-    }
+    width: 90%;
+    font-size: 1.7rem;
+  }
 }
 
 .Delete {
-    color: var(--color-gris-oscuro-2);
-    font-size: 2.5rem;
-    line-height: 0.8;
-    transition: 0.3s color;   
+  color: var(--color-gris-oscuro-2);
+  font-size: 2.5rem;
+  line-height: 0.8;
+  transition: 0.3s color;
 }
 .Delete:hover {
-    color: #000;
-    cursor: pointer;
+  color: #000;
+  cursor: pointer;
 }

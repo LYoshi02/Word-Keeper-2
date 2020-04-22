@@ -39,8 +39,8 @@ class WordKeeper extends Component {
             });
     }
 
-    headerChangedHandler = (event) => {
-        this.setState({ searchedWord: event.target.value });
+    headerChangedHandler = (value) => {
+        this.setState({ searchedWord: value });
     }
 
     render() {

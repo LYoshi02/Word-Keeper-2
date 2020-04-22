@@ -21,7 +21,7 @@ class Layout extends Component {
     render(){
         return(
             <React.Fragment>
-                <Header clicked={this.navigationStatusHandler} />
+                <Header clicked={this.navigationStatusHandler} changed={this.props.headerChanged} />
                 <Navigation closeNavigation={this.navigationStatusHandler} 
                     navigationOpened={this.state.openNavigation} />
                     

@@ -8,11 +8,11 @@ import classes from "./Navigation.module.css";
 class Navigation extends Component {
     state = {
         items: [
-            { content: 'Todos', route: '/palabras', icon: 'folder-open' },
-            { content: 'Sustantivos', route: '/palabras/sustantivos', icon: 'user' },
-            { content: 'Verbos', route: '/palabras/verbos', icon: 'running' },
-            { content: 'Adjetivos', route: '/palabras/adjetivos', icon: 'grin-wink' },
-            { content: 'Otros', route: '/palabras/otros', icon: 'boxes' }
+            { content: 'Todos', route: '/palabras', icon: 'folder-open', type: '' },
+            { content: 'Sustantivos', route: '/palabras?type=sustantivo', icon: 'user', type: 'sustantivo' },
+            { content: 'Verbos', route: '/palabras?type=verbo', icon: 'running', type: 'verbo' },
+            { content: 'Adjetivos', route: '/palabras?type=adjetivo', icon: 'grin-wink', type: 'adjetivo' },
+            { content: 'Otros', route: '/palabras?type=otro', icon: 'boxes', type: 'otro' }
         ]
     }
 
@@ -36,7 +36,8 @@ class Navigation extends Component {
                     <NavigationItem key={item.content}
                         icon={item.icon}
                         route={item.route}
-                        content={item.content} />
+                        content={item.content} 
+                        type={item.type} />
                 ))}
             </nav>
         );
@@ -45,7 +46,8 @@ class Navigation extends Component {
             <React.Fragment>
                 {navigation}
                 <Backdrop show={this.props.navigationOpened} 
-                    clicked={this.props.closeNavigation} />
+                    clicked={this.props.closeNavigation} 
+                    type="Navigation" />
             </React.Fragment >
         );
     }

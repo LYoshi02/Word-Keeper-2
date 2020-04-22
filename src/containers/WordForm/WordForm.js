@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import axios from "../../axios-words";
+import Backdrop from "../../components/UI/Backdrop/Backrop";
 import Button from "../../components/UI/Button/Button";
 import FormElement from "../../components/WordForm/FormElement/FormElement";
 
@@ -67,23 +68,41 @@ class WordForm extends Component {
                 formElementType: 'tipo',
                 value: 'sustantivo'
             }
+        },
+        editing: false
+    }
+
+    componentDidMount() {
+        if (this.props.match.params.id) {
+            this.setState({ editing: true });
+            const id = this.props.match.params.id;
+
+            axios.get(`/palabras/${id}.json`)
+                .then(res => {
+                    const updatedWordForm = { ...this.state.wordForm }
+                    for (let key in res.data) {
+                        const updatedFormElement = { ...updatedWordForm[key] };
+                        updatedFormElement.value = res.data[key];
+                        updatedWordForm[key] = updatedFormElement;
+                    }
+                    this.setState({ wordForm: updatedWordForm });
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }
 
     inputChangeHandler = (newValue, inputIdentifier) => {
-        const updatedWordForm = {...this.state.wordForm}
-        const updatedFormElement = {...this.state.wordForm[inputIdentifier]}
+        const updatedWordForm = { ...this.state.wordForm }
+        const updatedFormElement = { ...this.state.wordForm[inputIdentifier] }
         updatedFormElement.value = newValue
         updatedWordForm[inputIdentifier] = updatedFormElement
 
         this.setState({ wordForm: updatedWordForm });
     }
 
-    closeForm = () => {
-        this.props.history.push("/palabras");
-    }
-
-    addWordHandler = (event) => {
+    submitWordHandler = (event) => {
         event.preventDefault();
         const word = {
             nombre: this.state.wordForm.nombre.value,
@@ -92,9 +111,28 @@ class WordForm extends Component {
             tipo: this.state.wordForm.tipo.value
         }
 
-        axios.post("/palabras.json", word)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        if (this.state.editing) {
+            const id = this.props.match.params.id;
+            axios.put(`/palabras/${id}.json`, word)
+                .then(res => {
+                    console.log(res);
+                    this.props.updateWords();
+                    this.props.history.replace("/palabras")
+                })
+                .catch(err => console.log(err))
+        } else {
+            axios.post("/palabras.json", word)
+                .then(res => {
+                    console.log(res);
+                    this.props.updateWords();
+                    this.props.history.replace("/palabras")
+                })
+                .catch(err => console.log(err))
+        }
+    }
+
+    closeForm = () => {
+        this.props.history.push("/palabras")
     }
 
     render() {
@@ -107,24 +145,24 @@ class WordForm extends Component {
         }
 
         return (
-            <React.Fragment>
-                <div className={classes.Container}>
-                    <Button clicked={this.closeForm} btnType="Close">&times;</Button>
-                    <form className={classes.Form} onSubmit={this.addWordHandler}>
-                        {formElementsArray.map(element => (
-                            <FormElement
-                                key={element.id}
-                                formElementType={element.data.formElementType}
-                                formElementData={element.data}
-                                inputChangeHandler={(event) => this.inputChangeHandler(event.target.value, element.id)}
-                                receiveNewItems={(items) => this.inputChangeHandler(items, element.id)}
-                            />
-                        ))}
+            <div className={classes.Container}>
+                <Button clicked={this.closeForm} btnType="Close">&times;</Button>
+                <form className={classes.Form} onSubmit={this.submitWordHandler}>
+                    {formElementsArray.map(element => (
+                        <FormElement
+                            key={element.id}
+                            formElementType={element.data.formElementType}
+                            formElementData={element.data}
+                            inputChangeHandler={(event) => this.inputChangeHandler(event.target.value, element.id)}
+                            receiveNewItems={(items) => this.inputChangeHandler(items, element.id)}
+                        />
+                    ))}
 
-                        <Button btnType="Add Word">Agregar</Button>
-                    </form>
-                </div>
-            </React.Fragment>
+                    <Button btnType="Add Word">{(this.state.editing) ? "Editar" : "Agregar"}</Button>
+                </form>
+
+                <Backdrop clicked={this.closeForm} type="Form" show={true} />
+            </div>
         );
     }
 }

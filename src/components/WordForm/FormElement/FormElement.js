@@ -33,6 +33,7 @@ const formElement = (props) => {
             content = (
                 <Input elementType={props.formElementData.elementType}
                 changed={props.inputChangeHandler}
+                value={props.formElementData.value}
                 {...props.formElementData.elementConfig} />
             )
             break;

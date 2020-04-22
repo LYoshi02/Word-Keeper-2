@@ -7,7 +7,6 @@ import WordActions from "../WordActions/WordActions";
 import classes from "./Word.module.css";
 
 const word = (props) => {
-    console.log(props.meaning);
     return (
         <div className={classes.Word}>
             <Heading type="h2">{props.nombre}</Heading>
@@ -27,6 +26,8 @@ const word = (props) => {
 
             <WordActions
                 tipo={props.tipo}
+                deleteAction={props.deleteWord}
+                editAction={props.editWord}
             />
         </div>
     );

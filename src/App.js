@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
-import WordKeeper from './components/WordKeeper/WordKeeper';
+import WordKeeper from './containers/WordKeeper/WordKeeper';
 
 
 function App() {

@@ -5,7 +5,8 @@
     font-size: 2rem;
     box-shadow: rgba(0, 0, 0, 0.15) 2px 0.2rem 1rem;
     transition: 0.3s all;
-    margin: 0 0 2rem 0;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
     width: 100%;
 }
 .Word:hover {
@@ -16,10 +17,6 @@
 @media only screen and (min-width: 1000px) {
     .Word {
         width: 47%;
-    }
-
-    .Word:nth-child(odd) {
-        margin: 0 2rem 2rem 0;
     }
 }
 

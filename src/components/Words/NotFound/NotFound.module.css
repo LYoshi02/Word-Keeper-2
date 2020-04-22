@@ -1,0 +1,10 @@
+.NotFound {
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris-oscuro-2);
+    padding: 2rem 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    border: 2px solid var(--color-gris-oscuro-2);
+    border-radius: 5px;
+}

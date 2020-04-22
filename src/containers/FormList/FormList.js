@@ -11,9 +11,9 @@ class FormList extends Component {
         items: [{id: uuidv4(), content: ''}]
     }
 
-    componentDidMount() {
-        if(this.props.items.length > 0) {
-            this.setState({ items: this.props.items })
+    componentDidUpdate(prevProps) {
+        if(prevProps.items !== this.props.items && this.props.items.length > 0) {
+            this.setState({ items: this.props.items });
         }
     }
 
@@ -44,7 +44,6 @@ class FormList extends Component {
         this.setState({ items: newItems })
         this.props.sendItems(newItems); // This updates the parent State -> "WordForm" component
     }
-
 
     render() {
         return (

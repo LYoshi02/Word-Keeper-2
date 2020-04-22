@@ -16,7 +16,7 @@ const input = (props) => {
             break;
         case 'select':
             element = (
-                <select className={classes[props.class]} onChange={props.changed}>
+                <select className={classes[props.class]} value={props.value} onChange={props.changed}>
                     <option disabled>-- Selecciona un tipo --</option>
                     {props.options.map(opt => (
                         <option key={opt.value} value={opt.value}>{opt.displayValue}</option>

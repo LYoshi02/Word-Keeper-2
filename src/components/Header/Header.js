@@ -18,7 +18,8 @@ const header = (props) => {
                 <div className={classes.Search}>
                     <Icon type="search" class="Search" />
                     <input type="text" placeholder="Buscar una palabra..."
-                        className={classes.Input} />
+                        className={classes.Input} 
+                        onChange={props.changed} />
                     <button className={classes.Delete} type="button">&times;</button>
                 </div>
 

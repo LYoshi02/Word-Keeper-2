@@ -8,3 +8,9 @@
     border: 2px solid var(--color-gris-oscuro-2);
     border-radius: 5px;
 }
+
+.Error {
+    border-color: #740000;
+    background-color: #f2dede;
+    color: #a94442;
+}

@@ -1,7 +1,7 @@
 .Add {
     background-color: var(--color-secundario-1);
     color: #fff;
-    transition: 0.5s all;
+    transition: 0.3s all;
     box-shadow: rgba(0, 0, 0, 0.15) 0 4px 10px;
     border-radius: 1rem;
     padding: 1rem 2rem;
@@ -12,6 +12,13 @@
 .Add:hover {
     background-color: var(--color-secundario-1-oscuro);
     cursor: pointer;
+}
+.Add:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-gris-oscuro);
+}
+.Add:disabled:hover {
+    background-color: var(--color-gris-oscuro-2);
 }
 
 .Header {
@@ -37,8 +44,6 @@
     z-index: 2000;
 }
 
-.Word {
-}
 @media only screen and (min-width: 450px) {
     .Word {
         align-self: flex-end;
@@ -71,4 +76,24 @@
 .DeleteItem:hover {
     color: #000;
     cursor: pointer;
+}
+
+.Mobile {
+    background-color: var(--color-secundario-1);
+    color: #fff;
+    padding: 1.2rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    transition: .3s all;
+}
+.Mobile:hover {
+    background-color: var(--color-secundario-1-oscuro);
+}
+
+@media only screen and (min-width: 768px) {
+    .Mobile {
+        display: none;
+    }
 }

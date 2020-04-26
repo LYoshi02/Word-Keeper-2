@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 
 import axios from "../../axios-words";
 import Layout from "../../hoc/Layout/Layout";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import Words from "../Words/Words";
 import WordForm from "../WordForm/WordForm";
 
@@ -18,7 +19,10 @@ class WordKeeper extends Component {
     state = {
         words: [],
         searchedWord: '',
-        requestFinished: false
+        request: {
+            finished: false,
+            error: false
+        }
     }
 
     componentDidMount() {
@@ -35,7 +39,10 @@ class WordKeeper extends Component {
                         ...res.data[key]
                     });
                 }
-                this.setState({ words: fetchedWords, requestFinished: true });
+                this.setState({ words: fetchedWords, request: { finished: true} });
+            })
+            .catch(err => {
+                this.setState({ request: { finished: true, error: true} });
             });
     }
 
@@ -48,7 +55,7 @@ class WordKeeper extends Component {
             <Layout headerChanged={this.headerChangedHandler}>
                 <Words words={this.state.words} 
                     updateWords={this.getWords} 
-                    requestFinished={this.state.requestFinished} 
+                    request={this.state.request} 
                     searchedWord={this.state.searchedWord} />
 
                 <Route path={["/palabras/agregar", "/palabras/editar/:id"]} 
@@ -58,4 +65,4 @@ class WordKeeper extends Component {
     }
 }
 
-export default WordKeeper;
+export default withErrorHandler(WordKeeper, axios);

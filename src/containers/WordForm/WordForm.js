@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Swal from "sweetalert2";
 
 import axios from "../../axios-words";
 import Backdrop from "../../components/UI/Backdrop/Backrop";
 import Button from "../../components/UI/Button/Button";
 import FormElement from "../../components/WordForm/FormElement/FormElement";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 import classes from "./WordForm.module.css";
 
@@ -69,7 +71,8 @@ class WordForm extends Component {
                 value: 'sustantivo'
             }
         },
-        editing: false
+        editing: false,
+        btnDisabled: true
     }
 
     componentDidMount() {
@@ -85,11 +88,13 @@ class WordForm extends Component {
                         updatedFormElement.value = res.data[key];
                         updatedWordForm[key] = updatedFormElement;
                     }
-                    this.setState({ wordForm: updatedWordForm });
+                    this.setState({ wordForm: updatedWordForm, btnDisabled: false });
                 })
                 .catch(err => {
                     console.log(err);
                 })
+        } else {
+            this.setState({ btnDisabled: false });
         }
     }
 
@@ -111,24 +116,29 @@ class WordForm extends Component {
             tipo: this.state.wordForm.tipo.value
         }
 
+        let requestType = "post";
+        let requestURL = "/palabras.json";
         if (this.state.editing) {
             const id = this.props.match.params.id;
-            axios.put(`/palabras/${id}.json`, word)
-                .then(res => {
-                    console.log(res);
-                    this.props.updateWords();
-                    this.props.history.replace("/palabras")
-                })
-                .catch(err => console.log(err))
-        } else {
-            axios.post("/palabras.json", word)
-                .then(res => {
-                    console.log(res);
-                    this.props.updateWords();
-                    this.props.history.replace("/palabras")
-                })
-                .catch(err => console.log(err))
-        }
+            requestType = "put";
+            requestURL = `/palabras/${id}.json`;
+        } 
+
+        axios[requestType].apply(this, [requestURL, word])
+            .then(res => {
+                console.log(res);
+                this.props.updateWords();
+                this.props.history.replace("/palabras");
+                if(res.status === 200) {
+                    Swal.fire({
+                        title: (this.state.editing) ? "Palabra Editada!" : "Palabra Agregada!",
+                        icon: "success"
+                    })
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     closeForm = () => {
@@ -158,7 +168,8 @@ class WordForm extends Component {
                         />
                     ))}
 
-                    <Button btnType="Add Word">{(this.state.editing) ? "Editar" : "Agregar"}</Button>
+                    <Button disabled={this.state.btnDisabled} 
+                    btnType="Add Word">{(this.state.editing) ? "Editar" : "Agregar"}</Button>
                 </form>
 
                 <Backdrop clicked={this.closeForm} type="Form" show={true} />
@@ -167,4 +178,4 @@ class WordForm extends Component {
     }
 }
 
-export default WordForm;
+export default withErrorHandler(WordForm, axios);

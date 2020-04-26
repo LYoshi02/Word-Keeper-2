@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-import Icon from "../UI/Icon/Icon";
+import Icon from "../../UI/Icon/Icon";
 
 import classes from "./NavigationItem.module.css";
 

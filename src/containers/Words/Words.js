@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import axios from "../../axios-words";
+import Button from "../../components/UI/Button/Button";
+import Icon from "../../components/UI/Icon/Icon";
 import Loading from "../../components/UI/Loading/Loading";
 import NotFound from "../../components/Words/NotFound/NotFound";
 import Word from "../../components/Words/Word/Word";
@@ -13,7 +15,8 @@ class Words extends Component {
     state = {
         words: [],
         loading: true,
-        notFound: false
+        notFound: false,
+        showAlert: false
     }
 
     componentDidUpdate(prevProps) {
@@ -69,14 +72,13 @@ class Words extends Component {
             text: 'No podrás recuperar esta palabra',
             icon: 'warning',
             showCancelButton: true,
-            
         }).then(result => {
             if (result.value) {
                 axios.delete(`/palabras/${wordId}.json`)
                     .then(res => {
                         this.props.updateWords();
                         Swal.fire({
-                            title: "Palabra Borrada",
+                            title: "Palabra Borrada!",
                             icon: "success"
                         })
                     })
@@ -106,15 +108,24 @@ class Words extends Component {
                 </Masonry>
             )
         } else {
-            if (this.props.requestFinished) {
-                words = <NotFound></NotFound>;
+            if (this.props.request.finished) {
+                words = <NotFound>No se encontraron palabras</NotFound>;
             }
+        }
+
+        if(this.props.request.finished && this.props.request.error) {
+            words = <NotFound type="error">Se produjo un error al obtener las palabras</NotFound>;
         }
 
         return (
             <React.Fragment>
-                <WordSummary reqFinished={this.props.requestFinished} amount={this.state.words.length} />
+                <WordSummary reqFinished={this.props.request.finished} amount={this.state.words.length} />
                 {words}
+
+                <Button btnType="Mobile" 
+                clicked={() => this.props.history.push(this.props.match.url + "/agregar")} >
+                    <Icon type="plus" />
+                </Button>
             </React.Fragment>
         );
     }

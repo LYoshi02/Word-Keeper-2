@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import Backdrop from "../../components/UI/Backdrop/Backrop";
-import NavigationItem from "../../components/NavigationItem/NavigationItem";
+import NavigationItem from "../../components/Navigation/NavigationItem/NavigationItem";
+import NavigationMobile from "../../components/Navigation/NavigationMobile/NavigationMobile";
 
 import classes from "./Navigation.module.css";
 
@@ -25,12 +26,7 @@ class Navigation extends Component {
         let navigation = null;
         navigation = (
             <nav className={navClasses.join(' ')}>
-                <div className={classes.MobileTop}>
-                    <div className={classes.MobileClose} onClick={this.props.clicked}>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                <NavigationMobile clicked={this.props.closeNavigation} />
 
                 {this.state.items.map(item => (
                     <NavigationItem key={item.content}

@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import axios from "../../axios-words";
 import Layout from "../../hoc/Layout/Layout";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import Words from "../Words/Words";
+import WordsContainer from "../WordsContainer/WordsContainer";
 import WordForm from "../WordForm/WordForm";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -53,7 +53,7 @@ class WordKeeper extends Component {
     render() {
         return (
             <Layout headerChanged={this.headerChangedHandler}>
-                <Words words={this.state.words} 
+                <WordsContainer words={this.state.words} 
                     updateWords={this.getWords} 
                     request={this.state.request} 
                     searchedWord={this.state.searchedWord} />

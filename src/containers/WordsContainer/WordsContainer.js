@@ -11,7 +11,7 @@ import NotFound from "../../components/Words/NotFound/NotFound";
 import Word from "../../components/Words/Word/Word";
 import WordSummary from "../../components/Words/WordSummary/WordSummary";
 
-class Words extends Component {
+class WordsContainer extends Component {
     state = {
         words: [],
         loading: true,
@@ -131,4 +131,4 @@ class Words extends Component {
     }
 }
 
-export default withRouter(Words);
+export default withRouter(WordsContainer);

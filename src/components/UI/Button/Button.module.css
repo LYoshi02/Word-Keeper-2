@@ -2,7 +2,6 @@
     background-color: var(--color-secundario-1);
     color: #fff;
     transition: 0.3s all;
-    box-shadow: rgba(0, 0, 0, 0.15) 0 4px 10px;
     border-radius: 1rem;
     padding: 1rem 2rem;
     font-weight: bold;

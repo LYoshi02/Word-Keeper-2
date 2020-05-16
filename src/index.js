@@ -9,11 +9,13 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import headerReducer from "./store/reducers/header";
 import wordsReducer from "./store/reducers/wordsContainer";
+import wordFormReducer from "./store/reducers/wordForm";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   header: headerReducer,
-  words: wordsReducer
+  words: wordsReducer,
+  wordForm: wordFormReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

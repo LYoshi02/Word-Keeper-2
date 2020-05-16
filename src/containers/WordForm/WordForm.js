@@ -168,7 +168,7 @@ class WordForm extends Component {
 
 const mapStateToProps = state => {
     return {
-        closeForm: state.words.closeForm
+        closeForm: state.wordForm.closeForm
     }
 }
 

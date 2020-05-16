@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Swal from "sweetalert2";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+import * as actions from "../../store/actions/index";
 
 import axios from "../../axios-words";
 import Backdrop from "../../components/UI/Backdrop/Backrop";
 import Button from "../../components/UI/Button/Button";
 import FormElement from "../../components/WordForm/FormElement/FormElement";
-import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 import classes from "./WordForm.module.css";
 
@@ -89,10 +90,7 @@ class WordForm extends Component {
                         updatedWordForm[key] = updatedFormElement;
                     }
                     this.setState({ wordForm: updatedWordForm, btnDisabled: false });
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                });
         } else {
             this.setState({ btnDisabled: false });
         }
@@ -116,29 +114,13 @@ class WordForm extends Component {
             tipo: this.state.wordForm.tipo.value
         }
 
-        let requestType = "post";
-        let requestURL = "/palabras.json";
         if (this.state.editing) {
-            const id = this.props.match.params.id;
-            requestType = "put";
-            requestURL = `/palabras/${id}.json`;
-        } 
+            this.props.onEditWord(word, this.props.match.params.id);
+        } else {
+            this.props.onCreateWord(word);
+        }
 
-        axios[requestType].apply(this, [requestURL, word])
-            .then(res => {
-                console.log(res);
-                this.props.updateWords();
-                this.props.history.replace("/palabras");
-                if(res.status === 200) {
-                    Swal.fire({
-                        title: (this.state.editing) ? "Palabra Editada!" : "Palabra Agregada!",
-                        icon: "success"
-                    })
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        this.props.history.replace("/palabras");
     }
 
     closeForm = () => {
@@ -154,8 +136,14 @@ class WordForm extends Component {
             })
         }
 
+        let redirectForm = null;
+        if(this.props.closeForm) {
+            redirectForm = <Redirect to="/palabras" />;
+        }
+
         return (
             <div className={classes.Container}>
+                {redirectForm}
                 <Button clicked={this.closeForm} btnType="Close">&times;</Button>
                 <form className={classes.Form} onSubmit={this.submitWordHandler}>
                     {formElementsArray.map(element => (
@@ -178,4 +166,17 @@ class WordForm extends Component {
     }
 }
 
-export default withErrorHandler(WordForm, axios);
+const mapStateToProps = state => {
+    return {
+        closeForm: state.words.closeForm
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onCreateWord: (word) => dispatch(actions.createWord(word)),
+        onEditWord: (word, id) => dispatch(actions.editWord(word, id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WordForm);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
 import Button from "../../components/UI/Button/Button";
 import Icon from "../../components/UI/Icon/Icon";
@@ -10,13 +12,7 @@ import classes from "./Header.module.css";
 
 class Header extends Component {
     state = {
-        focus: false,
-        inputValue: ""
-    }
-
-    inputChangeHandler = (event) => {
-        this.setState({ inputValue: event.target.value });
-        this.props.changed(event.target.value);
+        focus: false
     }
 
     inputStateHandler = () => {
@@ -45,13 +41,13 @@ class Header extends Component {
                         <Icon type="search" class="Search" />
                         <input type="text" placeholder="Buscar una palabra..."
                             className={classes.Input} 
-                            value={this.state.inputValue}
-                            onChange={this.inputChangeHandler} 
+                            value={this.props.inputValue}
+                            onChange={(event) => this.props.onInputChanged(event.target.value)} 
                             onFocus={this.inputStateHandler}
                             onBlur={this.inputStateHandler}
                             />
                         <button className={classes.Delete} 
-                            onClick={this.cleanInput}
+                            onClick={() => this.props.onInputChanged("")}
                             type="button">&times;</button>
                     </div>
     
@@ -63,4 +59,16 @@ class Header extends Component {
     }
 }
 
-export default withRouter(Header);
+const mapStateToProps = state => {
+    return {
+        inputValue: state.header.searchedWord
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInputChanged: (value) => dispatch(actions.searchedWordChanged(value))
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

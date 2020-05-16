@@ -5,8 +5,7 @@ import Heading from "../../UI/Heading/Heading";
 import classes from "./WordInfo.module.css";
 
 const wordInfo = (props) => {
-    // const informacion = props.informacion;
-    // if (informacion.length === 0) return null;
+    if (props.items.length === 0) return null;
 
     return (
         <div>

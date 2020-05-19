@@ -41,3 +41,9 @@
 .Edit:hover {
   background-color: var(--color-secundario-2-oscuro);
 }
+
+.Feature {
+  cursor: default;
+  font-size: 3.5rem;
+  margin-right: 1.5rem;
+}

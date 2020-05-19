@@ -2,7 +2,7 @@ import React from 'react';
 
 import FormList from "../../../containers/FormList/FormList";
 import Heading from "../../UI/Heading/Heading";
-import Input from "./Input/Input";
+import Input from "../../UI/Input/Input";
 
 import classes from "./FormElement.module.css";
 

@@ -1,0 +1,24 @@
+.Auth {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    text-align: center;
+}
+
+@media only screen and (max-width: 53.125em) {
+    .Auth {
+        grid-template-rows: 90vh min-content;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .Auth {
+        grid-template-rows: 100vh;
+    }
+}
+
+.Auth button {
+    display: grid;
+    justify-self: center;
+    padding: 1rem 5rem !important;
+}

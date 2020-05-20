@@ -1,0 +1,16 @@
+.Paragraph {
+    margin-top: 2.5rem;
+    font-size: 1.8rem;
+    color: var(--color-gris-oscuro);
+}
+.Paragraph a {
+    color: var(--color-secundario-1);
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+    .Paragraph {
+        color: var(--color-gris-claro);
+        font-size: 2rem;
+    }
+}

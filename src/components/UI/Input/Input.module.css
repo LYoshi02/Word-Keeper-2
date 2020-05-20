@@ -1,0 +1,49 @@
+.Title {
+  font-size: 3rem;
+  width: 100%;
+  border: none;
+  padding: 1rem 0;
+  font-family: "Quicksand", sans-serif;
+}
+@media only screen and (min-width: 768px) {
+  .Title {
+    font-size: 4rem;
+  }
+}
+
+.Select {
+    padding: 1rem 2rem;
+    text-transform: capitalize;
+}
+
+.Input {
+    border: none;
+    font-size: 2rem;
+    width: 80%;
+}
+@media only screen and (min-width: 768px) {
+    .Input {
+        width: 90%;
+    }
+}
+
+
+
+.AuthLabel {
+  font-weight: bold;
+  font-size: 2rem;
+  display: block;
+}
+
+.AuthInput {
+  margin-top: 1rem;
+  border-radius: 5px;
+  border: 2px solid #CFDBD5;
+  font-size: 1.6rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.AuthInput::placeholder {
+  color: rgb(188, 201, 194);
+}

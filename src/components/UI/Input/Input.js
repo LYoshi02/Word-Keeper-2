@@ -25,13 +25,12 @@ const input = (props) => {
             )
             break;
         case 'auth-input':
-            console.log(props);
             element = (
                 <React.Fragment>
                     <label className={classes.AuthLabel}>{props.label}</label>
                     <input type={props.type} className={classes[props.class]} 
                     placeholder={props.placeholder} required={props.required}
-                    value={props.value}/>
+                    value={props.value} onChange={props.changed} />
                 </React.Fragment>
             )
             break;

@@ -8,7 +8,7 @@ import classes from "./Auth.module.css";
 
 class Auth extends Component {
     state = {
-        signInForm: {
+        authForm: {
             email: {
                 elementType: 'auth-input',
                 elementConfig: {
@@ -30,9 +30,7 @@ class Auth extends Component {
                     label: "Contraseña:"
                 },
                 value: ''
-            }
-        },
-        signUpForm: {
+            },
             repeatPassword: {
                 elementType: 'auth-input',
                 elementConfig: {
@@ -56,35 +54,62 @@ class Auth extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.match.url !== prevProps.match.url) {
+        if (this.props.match.url !== prevProps.match.url) {
+            const updatedAuthForm = this.restartInputValues();
+            
             this.setState({
-                isSignIn: this.props.match.url === "/signin"
+                isSignIn: this.props.match.url === "/signin",
+                authForm: updatedAuthForm
             });
         }
     }
 
+    restartInputValues = () => {
+        let updatedAuthForm = { ...this.state.authForm };
+        let updatedAuthElement = null;
+        for (let key in updatedAuthForm) {
+            updatedAuthElement = { ...this.state.authForm[key] };
+            updatedAuthElement.value = "";
+            updatedAuthForm[key] = updatedAuthElement;
+        }
+
+        return updatedAuthForm;
+    }
+
     showFormHandler = () => {
         this.setState(prevProps => {
-            return {showForm: !prevProps.showForm}
+            return { showForm: !prevProps.showForm }
         });
     }
 
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedAuthForm = { ...this.state.authForm };
+        const updatedAuthElement = { ...this.state.authForm[inputIdentifier] };
+        updatedAuthElement.value = event.target.value;
+        updatedAuthForm[inputIdentifier] = updatedAuthElement;
+        this.setState({ authForm: updatedAuthForm });
+    }
+
     render() {
-        let form = {...this.state.signInForm}
-        if(!this.state.isSignIn) {
-            form = {
-                ...this.state.signInForm,
-                ...this.state.signUpForm
+        let form = { ...this.state.authForm }
+        if (this.state.isSignIn) {
+            form = {};
+            for (let key in this.state.authForm) {
+                if (key !== "repeatPassword") {
+                    Object.assign(form, { [key]: this.state.authForm[key] });
+                }
             }
         }
 
         return (
             <div className={classes.Auth}>
                 <Hero showForm={this.showFormHandler} isSignIn={this.state.isSignIn} />
-                <AuthForm showForm={this.state.showForm} 
-                hideForm={this.showFormHandler} 
-                form={form} 
-                isSignIn={this.state.isSignIn} />                
+                <AuthForm showForm={this.state.showForm}
+                    hideForm={this.showFormHandler}
+                    form={form}
+                    isSignIn={this.state.isSignIn}
+                    changeInputValue={this.inputChangedHandler}
+                />
             </div>
         )
     }

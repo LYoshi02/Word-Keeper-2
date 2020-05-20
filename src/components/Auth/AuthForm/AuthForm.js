@@ -21,24 +21,20 @@ const authForm = (props) => {
             data: props.form[key]
         });
     }
-    console.log(formElementsArray);
-
-    let heading = <Heading type="h3">Ingresá a tu cuenta</Heading>
-    if(!props.isSignIn) {
-        heading = <Heading type="h3">Creá tu cuenta</Heading>
-    }
 
     return (
         <React.Fragment>
             <Backdrop show={props.showForm} type="Navigation" clicked={props.hideForm} />
             <div className={formClasses.join(' ')}>
-                {heading}
+                <Heading type="h3">{(props.isSignIn) ? "Ingresá a tu cuenta" : "Creá tu cuenta"}</Heading>
 
                 <form>
                     {formElementsArray.map(element => (
                         <FormElement key={element.id}
                             elementType={element.data.elementType}
                             elementConfig={element.data.elementConfig}
+                            value={element.data.value}
+                            inputChanged={(event) => props.changeInputValue(event, element.id)}
                         />
                     ))}
                 </form>

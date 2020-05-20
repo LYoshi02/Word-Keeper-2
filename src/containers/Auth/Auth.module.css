@@ -8,6 +8,7 @@
 @media only screen and (max-width: 53.125em) {
     .Auth {
         grid-template-rows: 90vh min-content;
+        text-align: center;
     }
 }
 

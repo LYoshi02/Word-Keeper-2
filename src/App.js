@@ -20,7 +20,7 @@ function App() {
         
         {/* <Redirect from="/" to="/signin" /> */}
         <Route path="/palabras" component={WordKeeper} />
-        <Route path="/signin" component={Auth} />
+        <Route path={["/signin", "/signup"]} component={Auth} />
       </div>
     </BrowserRouter>
   );

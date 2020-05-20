@@ -30,7 +30,8 @@
         border-radius: 2.5rem;
         background-color: rgba(241, 250, 238, 0.95);
         transform: translateY(100%);
-        transition: .3s all;
+        opacity: 0;
+        transition: .4s all;
     }
 }
 
@@ -44,12 +45,14 @@
     }
 }
 
-.FormGroup {
-    margin-bottom: 2.5rem;
-    text-align: left;
+@media only screen and (max-width: 500px) {
+    .Form p {
+        display: none;
+    }
 }
 
 .ShowFormMobile {
     transform: translateY(0);
+    opacity: 1;
     z-index: 100;
 }

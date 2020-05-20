@@ -27,7 +27,7 @@ const hero = (props) => (
         </ul>
         
         <div className={classes.ActionBtn}>
-            <ActionBtn btnClicked={props.showForm} />
+            <ActionBtn isSignIn={props.isSignIn} btnClicked={props.showForm} />
         </div>
     </div>
 );

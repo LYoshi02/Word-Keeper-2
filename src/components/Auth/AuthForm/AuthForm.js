@@ -1,57 +1,52 @@
 import React from 'react'
 
+import FormElement from "./FormElement/FormElement";
+
+import ActionBtn from "../ActionBtn/ActionBtn";
 import Backdrop from "../../UI/Backdrop/Backrop";
-import Button from "../../UI/Button/Button";
 import Heading from "../../../components/UI/Heading/Heading";
-import Input from "../../../components/UI/Input/Input";
 
 import classes from "./AuthForm.module.css";
 
 const authForm = (props) => {
     let formClasses = [classes.Form];
-    let backdrop = null;
     if (props.showForm) {
         formClasses.push(classes.ShowFormMobile);
+    }
+
+    const formElementsArray = [];
+    for (let key in props.form) {
+        formElementsArray.push({
+            id: key,
+            data: props.form[key]
+        });
+    }
+    console.log(formElementsArray);
+
+    let heading = <Heading type="h3">Ingresá a tu cuenta</Heading>
+    if(!props.isSignIn) {
+        heading = <Heading type="h3">Creá tu cuenta</Heading>
     }
 
     return (
         <React.Fragment>
             <Backdrop show={props.showForm} type="Navigation" clicked={props.hideForm} />
             <div className={formClasses.join(' ')}>
-                <Heading type="h3">Creá tu cuenta</Heading>
+                {heading}
 
-                <div className={classes.FormGroup}>
-                    <Input elementType="auth-input" />
-                </div>
+                <form>
+                    {formElementsArray.map(element => (
+                        <FormElement key={element.id}
+                            elementType={element.data.elementType}
+                            elementConfig={element.data.elementConfig}
+                        />
+                    ))}
+                </form>
 
-                <div className={classes.FormGroup}>
-                    <Input elementType="auth-input" />
-                </div>
-
-                <div className={classes.FormGroup}>
-                    <Input elementType="auth-input" />
-                </div>
-
-                <Button btnType="Add">Crear Cuenta</Button>
+                <ActionBtn isSignIn={props.isSignIn} />
             </div>
         </React.Fragment>
     );
 }
 
 export default authForm;
-
-{/* FORM PARA INICIAR SESION  */ }
-{/* <div className={classes.Form}>
-                    <Heading type="h3">Ingresá a tu cuenta</Heading>
-
-                    <div className={classes.FormGroup}>
-                        <Input elementType="auth-input" />
-                    </div>
-
-                    <div className={classes.FormGroup}>
-                        <Input elementType="auth-input" />
-                    </div>
-
-                    <Button btnType="Add">Iniciar Sesión</Button>
-                    <p className={classes.Paragraph}>¿No tenés una cuenta? <span>Haz click aquí</span></p>
-                </div> */}

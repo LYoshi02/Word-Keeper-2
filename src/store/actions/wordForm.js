@@ -8,10 +8,10 @@ export const formStart = () => {
     }
 }
 
-export const createWord = (word) => {
+export const createWord = (word, token) => {
     return dispatch => {
         dispatch(formStart());
-        axios.post("/palabras.json", word)
+        axios.post(`/palabras.json?auth=${token}`, word)
             .then(res => {
                 dispatch(createWordSuccess(word, res.data.name));
             })
@@ -32,10 +32,11 @@ export const createWordSuccess = (word, id) => {
     }
 }
 
-export const editWord = (word, id) => {
+export const editWord = (word, id, token) => {
     return dispatch => {
         dispatch(formStart());
-        axios.put(`/palabras/${id}.json`, word)
+        console.log(token);
+        axios.put(`/palabras/${id}.json?auth=${token}`, word)
             .then(res => {
                 if(res) {
                     dispatch(editWordSuccess(word, id));

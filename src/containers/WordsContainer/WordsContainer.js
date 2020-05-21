@@ -13,7 +13,7 @@ import WordSummary from "../../components/Words/WordSummary/WordSummary";
 
 class WordsContainer extends Component {
     componentDidMount() {
-        this.props.onFetchWords();
+        this.props.onFetchWords(this.props.token);
     }
 
     componentDidUpdate(prevProps) {
@@ -74,7 +74,7 @@ class WordsContainer extends Component {
                             ejemplo={word.ejemplo}
                             tipo={word.tipo}
                             editWord={() => this.editWordHandler(word.id)}
-                            deleteWord={() => this.props.onDeleteWord(word.id)}
+                            deleteWord={() => this.props.onDeleteWord(word.id, this.props.token)}
                         />
                     ))}
                 </Masonry>
@@ -110,15 +110,16 @@ const mapStateToProps = state => {
         filteredWords: state.words.filteredWords,
         loading: state.words.loading,
         reqFinished: state.words.reqFinished,
-        reqError: state.words.error
+        reqError: state.words.error,
+        token: state.auth.token
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchWords: () => dispatch(actions.fetchWords()),
+        onFetchWords: (token) => dispatch(actions.fetchWords(token)),
         onChangeFilteredWords: (words) => dispatch(actions.changeFilteredWords(words)),
-        onDeleteWord: (id) => dispatch(actions.deleteWord(id))
+        onDeleteWord: (id, token) => dispatch(actions.deleteWord(id, token))
     }
 }
 

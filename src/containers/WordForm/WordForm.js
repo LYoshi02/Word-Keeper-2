@@ -81,7 +81,7 @@ class WordForm extends Component {
             this.setState({ editing: true });
             const id = this.props.match.params.id;
 
-            axios.get(`/palabras/${id}.json`)
+            axios.get(`/palabras/${id}.json?auth=${this.props.token}`)
                 .then(res => {
                     const updatedWordForm = { ...this.state.wordForm }
                     for (let key in res.data) {
@@ -115,9 +115,9 @@ class WordForm extends Component {
         }
 
         if (this.state.editing) {
-            this.props.onEditWord(word, this.props.match.params.id);
+            this.props.onEditWord(word, this.props.match.params.id, this.props.token);
         } else {
-            this.props.onCreateWord(word);
+            this.props.onCreateWord(word, this.props.token);
         }
 
         this.props.history.replace("/palabras");
@@ -168,14 +168,15 @@ class WordForm extends Component {
 
 const mapStateToProps = state => {
     return {
-        closeForm: state.wordForm.closeForm
+        closeForm: state.wordForm.closeForm,
+        token: state.auth.token
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateWord: (word) => dispatch(actions.createWord(word)),
-        onEditWord: (word, id) => dispatch(actions.editWord(word, id))
+        onCreateWord: (word, token) => dispatch(actions.createWord(word, token)),
+        onEditWord: (word, id, token) => dispatch(actions.editWord(word, id, token))
     }
 }
 

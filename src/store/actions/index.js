@@ -12,3 +12,7 @@ export {
     createWord,
     editWord,
 } from "./wordForm";
+
+export {
+    auth
+} from "./auth";

@@ -2,10 +2,10 @@ import axios from "../../axios-words";
 import * as actionTypes from "./actionTypes";
 import Swal from "sweetalert2";
 
-export const fetchWords = () => {
+export const fetchWords = (token) => {
     return dispatch => {
         dispatch(fetchWordsStart());
-        axios.get('/palabras.json')
+        axios.get(`/palabras.json?auth=${token}`)
             .then(res => {
                 const fetchedWords = [];
                 for (let key in res.data) {
@@ -48,7 +48,7 @@ export const changeFilteredWords = (newWords) => {
     }
 }
 
-export const deleteWord = (wordId) => {
+export const deleteWord = (wordId, token) => {
     return dispatch => {
         Swal.fire({
             title: '¿Estas seguro?',
@@ -57,7 +57,7 @@ export const deleteWord = (wordId) => {
             showCancelButton: true,
         }).then(result => {
             if (result.value) {
-                axios.delete(`palabras/${wordId}.json`)
+                axios.delete(`palabras/${wordId}.json?auth=${token}`)
                     .then(res => {
                         if(res) {
                             dispatch(deleteWordSuccess(wordId));

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router';
+import { connect } from "react-redux";
+
+import * as actions from "../../store/actions/index";
 
 import AuthForm from "../../components/Auth/AuthForm/AuthForm";
 import Hero from "../../components/Auth/Hero/Hero";
-
 
 import classes from "./Auth.module.css";
 
@@ -30,18 +33,18 @@ class Auth extends Component {
                     label: "Contraseña:"
                 },
                 value: ''
-            },
-            repeatPassword: {
-                elementType: 'auth-input',
-                elementConfig: {
-                    type: 'password',
-                    placeholder: 'Misma Contraseña',
-                    class: 'AuthInput',
-                    required: true,
-                    label: "Repetir Contraseña:"
-                },
-                value: ''
             }
+            // repeatPassword: {
+            //     elementType: 'auth-input',
+            //     elementConfig: {
+            //         type: 'password',
+            //         placeholder: 'Misma Contraseña',
+            //         class: 'AuthInput',
+            //         required: true,
+            //         label: "Repetir Contraseña:"
+            //     },
+            //     value: ''
+            // }
         },
         showForm: false,
         isSignIn: true
@@ -90,6 +93,12 @@ class Auth extends Component {
         this.setState({ authForm: updatedAuthForm });
     }
 
+    submitFormHandler = (event) => {
+        event.preventDefault();
+        this.props.onAuth(this.state.authForm.email.value, 
+            this.state.authForm.password.value, this.state.isSignIn);
+    }
+
     render() {
         let form = { ...this.state.authForm }
         if (this.state.isSignIn) {
@@ -101,6 +110,11 @@ class Auth extends Component {
             }
         }
 
+        let authRedirect = null;
+        if(this.props.isAuth) {
+            authRedirect = <Redirect to="/palabras" />
+        }
+
         return (
             <div className={classes.Auth}>
                 <Hero showForm={this.showFormHandler} isSignIn={this.state.isSignIn} />
@@ -109,10 +123,24 @@ class Auth extends Component {
                     form={form}
                     isSignIn={this.state.isSignIn}
                     changeInputValue={this.inputChangedHandler}
+                    submitAuthForm={this.submitFormHandler}
                 />
+                {authRedirect}
             </div>
         )
     }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token !== null
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password, isSignIn) => dispatch(actions.auth(email, password, isSignIn))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

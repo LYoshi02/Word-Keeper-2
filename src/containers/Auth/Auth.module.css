@@ -19,7 +19,5 @@
 }
 
 .Auth button {
-    display: grid;
-    justify-self: center;
     padding: 1rem 5rem !important;
 }

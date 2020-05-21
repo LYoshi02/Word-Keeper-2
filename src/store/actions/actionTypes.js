@@ -10,3 +10,6 @@ export const FORM_START = "FORM_START";
 export const CREATE_WORD_SUCCESS = "CREATE_WORD_SUCCESS";
 export const EDIT_WORD_SUCCESS = "EDIT_WORD_SUCCESS"
 export const DELETE_WORD_SUCCESS = "DELETE_WORD_SUCCESS";
+
+// Authentication actions
+export const AUTH_SUCCESS = "AUTH_SUCCESS";

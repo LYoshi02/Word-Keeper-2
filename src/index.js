@@ -7,12 +7,14 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import authReducer from "./store/reducers/auth";
 import headerReducer from "./store/reducers/header";
 import wordsReducer from "./store/reducers/wordsContainer";
 import wordFormReducer from "./store/reducers/wordForm";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
+  auth: authReducer,
   header: headerReducer,
   words: wordsReducer,
   wordForm: wordFormReducer

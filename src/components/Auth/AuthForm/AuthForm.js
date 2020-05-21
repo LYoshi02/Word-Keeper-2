@@ -28,7 +28,7 @@ const authForm = (props) => {
             <div className={formClasses.join(' ')}>
                 <Heading type="h3">{(props.isSignIn) ? "Ingresá a tu cuenta" : "Creá tu cuenta"}</Heading>
 
-                <form>
+                <form onSubmit={props.submitAuthForm}>
                     {formElementsArray.map(element => (
                         <FormElement key={element.id}
                             elementType={element.data.elementType}
@@ -37,9 +37,9 @@ const authForm = (props) => {
                             inputChanged={(event) => props.changeInputValue(event, element.id)}
                         />
                     ))}
+                    <ActionBtn isSignIn={props.isSignIn} />
                 </form>
 
-                <ActionBtn isSignIn={props.isSignIn} />
             </div>
         </React.Fragment>
     );

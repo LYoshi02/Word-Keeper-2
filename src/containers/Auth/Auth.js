@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
 import AuthForm from "../../components/Auth/AuthForm/AuthForm";
-import Hero from "../../components/Auth/Hero/Hero";
+import AuthHero from "../../components/Auth/AuthHero/AuthHero";
 
 import classes from "./Auth.module.css";
 
@@ -117,7 +117,7 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth}>
-                <Hero showForm={this.showFormHandler} isSignIn={this.state.isSignIn} />
+                <AuthHero showForm={this.showFormHandler} isSignIn={this.state.isSignIn} />
                 <AuthForm showForm={this.state.showForm}
                     hideForm={this.showFormHandler}
                     form={form}

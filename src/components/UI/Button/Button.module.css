@@ -80,19 +80,22 @@
 .Mobile {
     background-color: var(--color-secundario-1);
     color: #fff;
-    padding: 1.2rem;
+    padding: .8rem;
     border-radius: 50%;
     position: fixed;
-    bottom: 5%;
-    right: 5%;
+    bottom: 2rem;
+    right: 2rem;
     transition: .3s all;
 }
 .Mobile:hover {
     background-color: var(--color-secundario-1-oscuro);
 }
-
 @media only screen and (min-width: 768px) {
     .Mobile {
         display: none;
     }
+}
+
+.Mobile svg {
+    font-size: 3rem;
 }

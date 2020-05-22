@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actions from "./store/actions/index";
 
 import Auth from "./containers/Auth/Auth";
 import WordKeeper from './components/WordKeeper/WordKeeper';
@@ -8,13 +9,16 @@ import WordKeeper from './components/WordKeeper/WordKeeper';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faFolderOpen, faUser, faRunning, faGrinWink, faBoxes, faSearch,
-  faTrash, faPen, faPlus
+  faTrash, faPen, faPlus, faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 library.add(faFolderOpen, faUser, faRunning, faGrinWink, faBoxes, faSearch,
-  faTrash, faPen, faPlus, faCheckCircle);
+  faTrash, faPen, faPlus, faCheckCircle, faSignOutAlt);
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onCheckAuthState();
+  }
 
   render() {
     let routes = (
@@ -51,7 +55,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    onCheckAuthState: () => dispatch(actions.checkAuthState())
   }
 }
 

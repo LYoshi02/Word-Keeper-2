@@ -13,7 +13,7 @@ import WordSummary from "../../components/Words/WordSummary/WordSummary";
 
 class WordsContainer extends Component {
     componentDidMount() {
-        this.props.onFetchWords(this.props.token);
+        this.props.onFetchWords(this.props.token, this.props.userId);
     }
 
     componentDidUpdate(prevProps) {
@@ -111,13 +111,14 @@ const mapStateToProps = state => {
         loading: state.words.loading,
         reqFinished: state.words.reqFinished,
         reqError: state.words.error,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchWords: (token) => dispatch(actions.fetchWords(token)),
+        onFetchWords: (token, userId) => dispatch(actions.fetchWords(token, userId)),
         onChangeFilteredWords: (words) => dispatch(actions.changeFilteredWords(words)),
         onDeleteWord: (id, token) => dispatch(actions.deleteWord(id, token))
     }

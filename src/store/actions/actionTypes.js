@@ -13,3 +13,4 @@ export const DELETE_WORD_SUCCESS = "DELETE_WORD_SUCCESS";
 
 // Authentication actions
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";

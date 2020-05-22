@@ -38,7 +38,7 @@ class Header extends Component {
                     <NavToggle openNavigation={this.props.clicked} />
     
                     <div className={searchContainerClasses.join(' ')}>
-                        <Icon type="search" class="Search" />
+                        <Icon type="search" iconClass="Search" />
                         <input type="text" placeholder="Buscar una palabra..."
                             className={classes.Input} 
                             value={this.props.inputValue}

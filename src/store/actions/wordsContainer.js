@@ -2,10 +2,10 @@ import axios from "../../axios-words";
 import * as actionTypes from "./actionTypes";
 import Swal from "sweetalert2";
 
-export const fetchWords = (token) => {
+export const fetchWords = (token, userId) => {
     return dispatch => {
         dispatch(fetchWordsStart());
-        axios.get(`/palabras.json?auth=${token}`)
+        axios.get(`/palabras.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`)
             .then(res => {
                 const fetchedWords = [];
                 for (let key in res.data) {

@@ -14,5 +14,7 @@ export {
 } from "./wordForm";
 
 export {
-    auth
+    auth,
+    authLogout,
+    checkAuthState
 } from "./auth";

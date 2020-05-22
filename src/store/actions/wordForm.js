@@ -35,7 +35,6 @@ export const createWordSuccess = (word, id) => {
 export const editWord = (word, id, token) => {
     return dispatch => {
         dispatch(formStart());
-        console.log(token);
         axios.put(`/palabras/${id}.json?auth=${token}`, word)
             .then(res => {
                 if(res) {

@@ -17,7 +17,7 @@ const navigationItem = (props) => (
 
             return props.type === "";
         }}>
-            <Icon type={props.icon} class="WordType" />
+            <Icon type={props.icon} iconClass="WordType" />
             <p className={classes.Paragraph}>{props.content}</p>
         </NavLink>
     </div>

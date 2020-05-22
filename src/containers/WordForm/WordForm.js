@@ -111,7 +111,8 @@ class WordForm extends Component {
             nombre: this.state.wordForm.nombre.value,
             significado: this.state.wordForm.significado.value,
             ejemplo: this.state.wordForm.ejemplo.value,
-            tipo: this.state.wordForm.tipo.value
+            tipo: this.state.wordForm.tipo.value,
+            userId: this.props.userId
         }
 
         if (this.state.editing) {
@@ -169,7 +170,8 @@ class WordForm extends Component {
 const mapStateToProps = state => {
     return {
         closeForm: state.wordForm.closeForm,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 

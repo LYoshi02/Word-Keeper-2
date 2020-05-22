@@ -18,7 +18,7 @@
 }
 @media only screen and (min-width: 768px) {
   .WordType {
-      margin-right: 1rem;
+    margin-right: 1rem;
   }
 }
 
@@ -46,4 +46,22 @@
   cursor: default;
   font-size: 3.5rem;
   margin-right: 1.5rem;
+}
+
+.SignOut {
+  position: absolute;
+  right: 0;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  color: var(--color-secundario-1);
+}
+@media only screen and (min-width: 768px) {
+  .SignOut {
+    position: static;
+    align-self: flex-end;
+    transition: .3s all;
+  }
+  .SignOut:hover {
+    color: var(--color-secundario-1-oscuro);
+  }
 }

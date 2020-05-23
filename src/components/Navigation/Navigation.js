@@ -23,7 +23,8 @@ const navigation = (props) => {
                         icon={item.icon}
                         route={item.route}
                         content={item.content} 
-                        type={item.type} />
+                        type={item.type} 
+                        closeNav={props.closeNavigation} />
                 ))}
 
                 <Icon type="sign-out-alt" iconClass="SignOut" clicked={props.logOut} />

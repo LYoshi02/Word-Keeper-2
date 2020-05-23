@@ -6,7 +6,7 @@ import Icon from "../../UI/Icon/Icon";
 import classes from "./NavigationItem.module.css";
 
 const navigationItem = (props) => (
-    <div>
+    <div onClick={props.closeNav}>
         <NavLink to={props.route} activeClassName={classes.ItemActive} className={classes.Item}
         isActive={(match, location) => {
             // It allows items in the navigation to have the active class

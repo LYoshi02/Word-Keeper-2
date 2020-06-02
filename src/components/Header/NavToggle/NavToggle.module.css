@@ -1,7 +1,7 @@
 .NavToggle {
   margin-right: 4rem;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .NavToggle {
     display: none;
   }

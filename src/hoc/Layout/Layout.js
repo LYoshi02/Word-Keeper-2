@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
-import Header from "../../containers/Header/Header";
+import Header from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 
 import classes from "./Layout.module.css";
 
 class Layout extends Component {
     state = {
-        openNavigation: false,
+        isNavOpen: false,
+        isInputFocus: false,
         navItems: [
             { content: 'Todos', route: '/palabras', icon: 'folder-open', type: '' },
             { content: 'Sustantivos', route: '/palabras?type=sustantivo', icon: 'user', type: 'sustantivo' },
@@ -19,10 +20,16 @@ class Layout extends Component {
         ]
     }
 
+    inputStatusHandler = () => {
+        this.setState(prevState => {
+            return { isInputFocus: !prevState.isInputFocus }
+        })
+    }
+
     navigationStatusHandler = () => {
         this.setState(prevState => {
             return {
-                openNavigation: !prevState.openNavigation
+                isNavOpen: !prevState.isNavOpen
             }
         })
     }
@@ -30,9 +37,15 @@ class Layout extends Component {
     render(){
         return(
             <React.Fragment>
-                <Header clicked={this.navigationStatusHandler}/>
-                <Navigation closeNavigation={this.navigationStatusHandler} 
-                    navigationOpened={this.state.openNavigation}
+                <Header 
+                    clicked={this.navigationStatusHandler}
+                    isInputFocus={this.state.isInputFocus}
+                    changeInputStatus={this.inputStatusHandler}
+                    inputValue={this.props.inputValue}
+                    inputChanged={(inputValue) => this.props.onInputChanged(inputValue)}
+                />
+                <Navigation changeNavStatus={this.navigationStatusHandler} 
+                    isNavigationOpen={this.state.isNavOpen}
                     items={this.state.navItems} 
                     logOut={this.props.onAuthLogOut} />
                     
@@ -44,10 +57,17 @@ class Layout extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        onAuthLogOut: () => dispatch(actions.authLogout())
+        inputValue: state.header.searchedWord
     }
 }
 
-export default connect(null, mapDispatchToProps)(Layout);
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuthLogOut: () => dispatch(actions.authLogout()),
+        onInputChanged: (value) => dispatch(actions.searchedWordChanged(value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

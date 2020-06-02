@@ -1,14 +1,14 @@
 .Header {
   padding: 2rem 2rem 0 2rem;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .Header {
     width: 75%;
     float: right;
     padding: 2rem 2.5rem 0 2.5rem;
   }
 }
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 68.75em) {
   .Header {
     width: 80%;
   }
@@ -25,7 +25,7 @@
   content: "";
   clear: both;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .Container::after {
     display: none;
   }
@@ -40,7 +40,7 @@
 .Header span:not(:last-child) {
   margin-bottom: 0.6rem;
 }
-@media only screen and (min-width: 360px) {
+@media only screen and (min-width: 22.5em) {
   .Header span {
     width: 5rem;
   }
@@ -62,7 +62,7 @@
 .Search:hover {
   border: 2px solid #c4c4c4;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .Search {
     width: 40vw;
   }
@@ -79,7 +79,7 @@
   background-color: transparent;
   border: none;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .Input {
     width: 90%;
     font-size: 1.7rem;

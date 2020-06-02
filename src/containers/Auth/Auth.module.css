@@ -12,7 +12,14 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 53.125em) and (max-height: 31.25em) {
+    .Auth {
+        grid-template-rows: repeat(2, min-content);
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 31.25em) {
     .Auth {
         grid-template-rows: 100vh;
     }

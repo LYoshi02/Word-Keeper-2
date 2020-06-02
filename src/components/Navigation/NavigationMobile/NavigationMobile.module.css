@@ -11,7 +11,7 @@
   content: "";
   clear: both;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
   .MobileTop,
   .MobileTop > * {
     display: none;

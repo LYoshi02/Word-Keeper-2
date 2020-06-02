@@ -12,7 +12,8 @@ import headerReducer from "./store/reducers/header";
 import wordsReducer from "./store/reducers/wordsContainer";
 import wordFormReducer from "./store/reducers/wordForm";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = process.env.NODE_ENV === "development" ? 
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 const rootReducer = combineReducers({
   auth: authReducer,
   header: headerReducer,

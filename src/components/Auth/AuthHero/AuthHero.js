@@ -18,9 +18,9 @@ const hero = (props) => (
             <ListItem bold="Expandí" text="tu vocabulario" />
         </ul>
         
-        <div className={classes.ActionBtn}>
-            <ActionBtn isSignIn={props.isSignIn} btnClicked={props.showForm} />
-        </div>
+        <ActionBtn isSignIn={props.isSignIn} 
+            elementClass={"ActionBtn"}
+            btnClicked={props.showForm} />
     </div>
 );
 

@@ -9,14 +9,14 @@ import classes from "./Navigation.module.css";
 
 const navigation = (props) => {
     const navClasses = [classes.Navigation];
-        if (props.navigationOpened) {
-            navClasses.push(classes.Opened);
+        if (props.isNavigationOpen) {
+            navClasses.push(classes.NavOpen);
         }
 
         let navigation = null;
         navigation = (
             <nav className={navClasses.join(' ')}>
-                <NavigationMobile clicked={props.closeNavigation} />
+                <NavigationMobile clicked={props.changeNavStatus} />
 
                 {props.items.map(item => (
                     <NavigationItem key={item.content}
@@ -24,7 +24,7 @@ const navigation = (props) => {
                         route={item.route}
                         content={item.content} 
                         type={item.type} 
-                        closeNav={props.closeNavigation} />
+                        closeNav={props.changeNavStatus} />
                 ))}
 
                 <Icon type="sign-out-alt" iconClass="SignOut" clicked={props.logOut} />
@@ -34,8 +34,8 @@ const navigation = (props) => {
         return (
             <React.Fragment>
                 {navigation}
-                <Backdrop show={props.navigationOpened} 
-                    clicked={props.closeNavigation} 
+                <Backdrop show={props.isNavigationOpen} 
+                    clicked={props.changeNavStatus} 
                     type="Navigation" />
             </React.Fragment >
         );

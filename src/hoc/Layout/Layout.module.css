@@ -3,7 +3,7 @@
     padding: 0 2rem 3rem 2rem;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
     .Main {
         width: 75%;
         float: right;
@@ -11,7 +11,7 @@
     }
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 68.75em) {
     .Main {
         width: 80%;
     }

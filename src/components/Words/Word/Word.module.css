@@ -3,7 +3,7 @@
     border: 2px solid #b1b1b1;
     padding: 1rem 1.5rem;
     font-size: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.15) 2px 0.2rem 1rem;
+    box-shadow: 1px 5px 10px 3px rgba(177,177,177,0.15);
     transition: 0.3s all;
     margin-bottom: 2rem;
     margin-right: 2rem;
@@ -11,10 +11,10 @@
 }
 .Word:hover {
     transform: scale(1.01);
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0.5rem 1.5rem;
+    box-shadow: 1px 5px 10px 6px rgba(177,177,177,0.15);
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 62.5em) {
     .Word {
         width: 47%;
     }

@@ -37,6 +37,7 @@ const authForm = (props) => {
                             inputChanged={(event) => props.changeInputValue(event, element.id)}
                         />
                     ))}
+                    
                     <ActionBtn isSignIn={props.isSignIn} />
                 </form>
 

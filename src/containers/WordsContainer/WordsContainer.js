@@ -48,12 +48,7 @@ class WordsContainer extends Component {
         let searchedWordFiltered = words;
         if (this.props.searchedWord.trim() !== "") {
             const search = this.props.searchedWord.trim().toLowerCase();
-            searchedWordFiltered = [];
-
-            words.map(word => {
-                const name = word.nombre.toLowerCase();
-                if (name.indexOf(search) !== -1) searchedWordFiltered.push(word);
-            })
+            searchedWordFiltered = words.filter(word => word.nombre.toLowerCase().indexOf(search) !== -1);
         }
         return searchedWordFiltered;
     }

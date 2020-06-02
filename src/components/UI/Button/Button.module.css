@@ -23,7 +23,7 @@
 .Header {
     display: none;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
     .Header {
         display: inline-block;
     }
@@ -43,7 +43,7 @@
     z-index: 2000;
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 28.125em) {
     .Word {
         align-self: flex-end;
     }
@@ -57,7 +57,7 @@
     text-transform: capitalize;
     float: right;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
     .Item {
         margin-right: 2rem;
     }
@@ -90,7 +90,7 @@
 .Mobile:hover {
     background-color: var(--color-secundario-1-oscuro);
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 48em) {
     .Mobile {
         display: none;
     }

@@ -1,3 +1,21 @@
+.ActionBtn {
+    display: none;
+}
+@media only screen and (max-width: 31.25em) {
+    .ActionBtn {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .ActionBtn button {
+        align-self: center;
+    }
+    .ActionBtn p {
+        padding: 0 2rem;
+    }
+}
+
 .Paragraph {
     margin-top: 2.5rem;
     font-size: 1.8rem;
@@ -8,7 +26,7 @@
     font-weight: bold;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 31.25em) {
     .Paragraph {
         color: var(--color-gris-claro);
         font-size: 2rem;

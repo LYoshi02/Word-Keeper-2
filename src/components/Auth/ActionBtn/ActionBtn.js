@@ -6,25 +6,20 @@ import Button from "../../UI/Button/Button";
 import classes from "./ActionBtn.module.css";
 
 const actionBtn = (props) => {
-    let element = (
-        <React.Fragment>
-            <Button clicked={props.btnClicked} type="submit" btnType="Add">Iniciar Sesión</Button>
-            <p className={classes.Paragraph}>¿No tenés una cuenta? <Link to="/signup">Haz click aquí</Link></p>
-        </React.Fragment>
-    );
+    console.log("hello");
+    let buttonElement = <Button clicked={props.btnClicked} type="submit" btnType="Add">Iniciar Sesión</Button>;
+    let paragraphElement = <p className={classes.Paragraph}>¿No tenés una cuenta? <Link to="/signup">Creá tu Cuenta</Link></p>;
+    
     if (!props.isSignIn) {
-        element = (
-            <React.Fragment>
-                <Button clicked={props.btnClicked} type="submit" btnType="Add">Crear Cuenta</Button>
-                <p className={classes.Paragraph}>¿Ya tenés tu propia cuenta? <Link to="/signin">Haz click aquí</Link></p>
-            </React.Fragment>
-        );
+        buttonElement = <Button clicked={props.btnClicked} type="submit" btnType="Add">Crear Cuenta</Button>;
+        paragraphElement = <p className={classes.Paragraph}>¿Ya tenés tu propia cuenta? <Link to="/signin">Iniciá Sesión</Link></p>
     }
 
     return (
-        <React.Fragment>
-           {element}
-        </React.Fragment>
+        <div className={classes[props.elementClass]}>
+           {buttonElement}
+           {paragraphElement}
+        </div>
     )
 };
 

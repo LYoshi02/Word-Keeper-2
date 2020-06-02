@@ -5,7 +5,7 @@
     font-size: 2.5rem;
     font-weight: 300;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 31.25em) {
     .ListItem {
         font-size: 2rem;
     }
@@ -16,8 +16,4 @@
 
 .ListItem p {
     margin-left: 1rem;
-}
-
-.ListItem span {
-    font-weight: bold;
 }

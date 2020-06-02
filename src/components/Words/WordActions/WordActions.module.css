@@ -4,7 +4,7 @@
   align-items: center;
   margin-top: 2rem;
 }
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 22.5em) {
   .Details {
     justify-content: flex-end;
     flex-wrap: wrap;
@@ -21,7 +21,7 @@
   margin: 1rem 0;
   text-transform: uppercase;
 }
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 22.5em) {
   .Type {
     width: 100%;
     text-align: center;
